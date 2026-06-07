@@ -1,144 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deployment Portal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deployment Runbook</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #1f2937;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 40px;
-        }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #1f2937;
+        color: white;
+        margin: 0;
+        padding: 30px;
+        text-align: center;
+    }
 
-        h1 {
-            margin-bottom: 30px;
-        }
+    h1 {
+        margin-bottom: 20px;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-        }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        max-width: 900px;
+        margin: auto;
+    }
 
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-        }
+    button {
+        padding: 14px;
+        font-size: 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #2563eb;
+        color: white;
+    }
 
-        button {
-            padding: 15px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            background: #2563eb;
-            color: white;
-            transition: 0.2s;
-        }
+    button:hover {
+        background: #1d4ed8;
+    }
 
-        button:hover {
-            background: #1d4ed8;
-        }
+    #output {
+        margin-top: 25px;
+        background: #111827;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: left;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        white-space: pre-wrap;
+        font-family: Consolas, monospace;
+    }
 
-        #status {
-            margin-top: 30px;
-            padding: 15px;
-            background: #374151;
-            border-radius: 8px;
-        }
-    </style>
+    #copyBtn {
+        margin-top: 10px;
+        background: #10b981;
+    }
+</style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Deployment Portal</h1>
+<h1>Deployment Runbook</h1>
 
-    <div class="button-grid">
-        
-        <button onclick="sendCommand(Remove-Office)">
-            Remove Office 365
-        </button>
-        
-        <button onclick="sendCommand('Install Adobe Reader')">
-            Install Adobe Reader
-        </button>
+<div class="grid">
 
-        <button onclick="sendCommand('Install Zoom')">
-            Install Zoom
-        </button>
+    <button onclick="setCmd('winget install Zoom.Zoom')">Install Zoom</button>
 
-        <button onclick="sendCommand('Install 7-Zip')">
-            Install 7-Zip
-        </button>
+    <button onclick="setCmd('winget install 7zip.7zip')">Install 7-Zip</button>
 
-        <button onclick="sendCommand('Run GPUpdate')">
-            Run GPUpdate
-        </button>
+    <button onclick="setCmd('winget install Adobe.Acrobat.Reader.64-bit')">Install Adobe Reader</button>
 
-        <button onclick="sendCommand('Restart Computer')">
-            Restart Computer
-        </button>
+    <button onclick="setCmd('gpupdate /force')">Run GPUpdate</button>
 
-        <button onclick="sendCommand('Clear Temp Files')">
-            Clear Temp Files
-        </button>
-    </div>
+    <button onclick="setCmd('shutdown /r /t 0')">Restart PC</button>
 
-    <div id="status">
-        Ready
-    </div>
+    <button onclick="setCmd('Remove-Office')">Remove Office (Runbook)</button>
+
 </div>
 
-<script type="module">
-function sendCommand(command) {
+<div id="output">
+Click a button to generate a PowerShell command
+</div>
 
-    console.log("Command sent:", command);
+<button id="copyBtn" onclick="copyCmd()">Copy Command</button>
 
-    document.getElementById("status").innerHTML =
-        "Command Sent: <strong>" + command + "</strong>";
+<script>
+let currentCmd = "";
 
-//Office 365 Removal
-function Remove-Office
-{
-    $AppList = "Microsoft OneNote","Microsoft 365"
-    $LanguageList = "en-us","es-es","fr-fr","pt-br"
+function setCmd(cmd) {
+    currentCmd = cmd;
 
-foreach ($App in $AppList) {
-      foreach ($Language in $LanguageList) {
-
-            $AppName = "$App - $Language"
-
-            $OneNote = Get-ChildItem `
-                HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, `
-                HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall |
-                Get-ItemProperty |
-                Where-Object { $_.DisplayName -eq $AppName } |
-                Select-Object DisplayName, UninstallString
-
-            if ($OneNote -and $OneNote.UninstallString) {
-                $uninst = $OneNote.UninstallString + " displaylevel=false"
-                Start-Process -WindowStyle Hidden cmd.exe -ArgumentList '/c', $uninst -Wait
-            }
-        }
-    }
+    document.getElementById("output").innerText =
+`PowerShell Command:
+-------------------------
+${cmd}`;
 }
 
+function copyCmd() {
+    if (!currentCmd) return;
 
-    // Future API Example:
-    // fetch('https://your-api.com/run', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //         command: command
-    //     })
-    // });
+    navigator.clipboard.writeText(currentCmd);
+
+    document.getElementById("copyBtn").innerText = "Copied!";
+
+    setTimeout(() => {
+        document.getElementById("copyBtn").innerText = "Copy Command";
+    }, 1500);
 }
 </script>
 
