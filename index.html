@@ -1,32 +1,58 @@
 <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Deployment Runbook</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Portal</title>
 
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #1f2937;
-    color: white;
-    padding: 20px;
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 40px;
+        }
 
-button {
-    padding: 10px;
-    margin: 5px;
-    cursor: pointer;
-}
+        h1 {
+            margin-bottom: 30px;
+        }
 
-#display {
-    margin-top: 20px;
-    padding: 15px;
-    background: #111827;
-    border-radius: 8px;
-    white-space: pre-wrap;
-    min-height: 200px;
-    font-family: Consolas, monospace;
-}
-</style>
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #2563eb;
+            color: white;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #status {
+            margin-top: 30px;
+            padding: 15px;
+            background: #374151;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
