@@ -59,3 +59,24 @@ $form.Controls.Add($exitBtn)
 # SHOW FORM
 # =========================
 [void]$form.ShowDialog()
+
+# =========================
+# Function
+# =========================
+#Disable Sleep Settings
+function Disable-SleepSettings {
+    Write-Host "`nDisabling all sleep and hibernate settings..."
+
+    # Disable sleep on AC and DC
+    powercfg /change standby-timeout-ac 0
+    powercfg /change standby-timeout-dc 0
+
+    # Disable display off on AC and DC
+    powercfg /change monitor-timeout-ac 0
+    powercfg /change monitor-timeout-dc 0
+
+    # Optional: Disable hibernate
+    powercfg /hibernate off
+
+    Write-Host "All sleep, display timeout, and hibernation settings have been disabled."
+}
