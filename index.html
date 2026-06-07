@@ -135,6 +135,14 @@ function copyText() {
 
     showToast("Copied to clipboard");
 }
+function copyText() {
+
+    if (!currentText) return;
+
+    navigator.clipboard.writeText(currentText);
+
+    showToast("Copied to clipboard!");
+}
 </script>
 
 </body>
