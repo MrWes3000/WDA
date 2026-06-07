@@ -29,37 +29,29 @@ button {
 </style>
 </head>
 <body>
-
-<h1>Deployment Portal</h1>
-
-<div>
-<button onclick="showSuperRemover()">
-    Super Remover
-</button>
-
-<button onclick="showText('https://portal.office.com')">
-    Office 365 Portal
-</button>
-
-<button onclick="showText('winget install Zoom.Zoom')">
-    Install Zoom
-</button>
-
-<button onclick="showText(`Checklist:
-
-1. Verify user logged out
-2. Rename workstation
-3. Install printer
-4. Test Outlook`)">
-    New PC Checklist
-</button>
-
-<button onclick="copyText()">
-    Copy Displayed Text
-</button>
-<div>
+<div class="container">
+    <h1>Deployment Portal</h1>
+    <div class="button-gird">
     
+    <button onclick="showSuperRemover()"> Super Remover </button>
+
+    <button onclick="showText('https://portal.office.com')"> Office 365 Portal </button>
+
+    <button onclick="showText('winget install Zoom.Zoom')"> Install Zoom </button>
+
+    <button onclick="showText(`Checklist:
+    
+    1. Verify user logged out
+    2. Rename workstation
+    3. Install printer
+    4. Test Outlook`)">
+        New PC Checklist
+    </button>
+
+    <button onclick="copyText()"> Copy Displayed Text </button> <div>
+    </div>
 <div id="display">
+    
 Click a button to display information.
 </div>
 
