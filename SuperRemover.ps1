@@ -1,4 +1,20 @@
-﻿function Show-Menu {
+    Clear-Host
+    Write-Host "===================================="
+    Write-Host "        Main Menu"
+    Write-Host "===================================="
+    Write-Host "1: Disable Sleep Settings"
+    Write-Host "2: Remove Office 365 Bloatware"
+    Write-Host "3: Remove Dell Bloatware 1"
+    Write-Host "4: Remove Dell Bloatware 2"
+    Write-Host "5: Deploy Adobe Reader"
+    Write-Host "6: Deploy Microsoft Remote Desktop Client"
+    Write-Host "7: Deploy Zoom"
+    Write-Host "8: Deploy Chrome"
+    Write-Host "9: Deploy 7-Zip"
+    Write-Host "100: Exit"
+    Write-Host "===================================="
+ 
+ function Show-Menu {
     Clear-Host
     Write-Host "===================================="
     Write-Host "        Main Menu"
