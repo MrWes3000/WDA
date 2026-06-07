@@ -59,6 +59,11 @@
     <h1>Deployment Portal</h1>
 
     <div class="button-grid">
+        
+        <button onclick="sendCommand('Remove-Office')">
+            Remove Office 365
+        </button>
+        
         <button onclick="sendCommand('Install Adobe Reader')">
             Install Adobe Reader
         </button>
@@ -96,6 +101,33 @@ function sendCommand(command) {
 
     document.getElementById("status").innerHTML =
         "Command Sent: <strong>" + command + "</strong>";
+
+//Office 365 Removal
+function Remove-Office {
+
+$AppList = "Microsoft OneNote","Microsoft 365"
+$LanguageList = "en-us","es-es","fr-fr","pt-br"
+
+foreach ($App in $AppList) {
+      foreach ($Language in $LanguageList) {
+
+            $AppName = "$App - $Language"
+
+            $OneNote = Get-ChildItem `
+                HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall, `
+                HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall |
+                Get-ItemProperty |
+                Where-Object { $_.DisplayName -eq $AppName } |
+                Select-Object DisplayName, UninstallString
+
+            if ($OneNote -and $OneNote.UninstallString) {
+                $uninst = $OneNote.UninstallString + " displaylevel=false"
+                Start-Process -WindowStyle Hidden cmd.exe -ArgumentList '/c', $uninst -Wait
+            }
+        }
+    }
+}
+
 
     // Future API Example:
     // fetch('https://your-api.com/run', {
