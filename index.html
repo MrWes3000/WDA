@@ -24,11 +24,12 @@
             max-width: 800px;
             margin: auto;
         }
-        
-        .display-container {
-            max-width: 800px;
-            margin: auto;
-        }
+
+        #displayWrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 20px auto;
+}
         
 
         .button-grid {
@@ -52,19 +53,35 @@
             background: #1d4ed8;
         }
 
-        #display {
-            margin-top: 30px;
-            padding: 15px;
-            background: #374151;
-            border-radius: 8px;
-            white-space: pre-wrap;
-            text-align: left;
-        }
+#display {
+    background: #111827;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 200px;
+    white-space: pre-wrap;
+    text-align: left;
+    font-family: Consolas, monospace;
+}
 
-        #display ul,
-        #display ol {
-        margin-left: 20px;
-        }
+#copyBtn {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+
+    padding: 6px 12px;
+    font-size: 12px;
+
+    background: #10b981;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+#copyBtn:hover {
+    background: #059669;
+}
     </style>
 </head>
 <body>
@@ -91,11 +108,11 @@
     
     </div>
 </div>
+<div id="displayWrapper">
 <div id="display"> 
-        Click a button to display information. 
+    Click a button to display information. 
 </div>
-<div>
-<button onclick="copyText()"> Copy Displayed Text </button>
+    <button onclick="copyText()"> Copy Displayed Text </button>
 </div>
 
 <script>
