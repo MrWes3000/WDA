@@ -60,7 +60,7 @@
 
     <div class="button-grid">
         
-        <button onclick="sendCommand('Remove-Office')">
+        <button onclick="sendCommand(Remove-Office)">
             Remove Office 365
         </button>
         
@@ -103,10 +103,10 @@ function sendCommand(command) {
         "Command Sent: <strong>" + command + "</strong>";
 
 //Office 365 Removal
-function Remove-Office{
-
-$AppList = "Microsoft OneNote","Microsoft 365"
-$LanguageList = "en-us","es-es","fr-fr","pt-br"
+function Remove-Office
+{
+    $AppList = "Microsoft OneNote","Microsoft 365"
+    $LanguageList = "en-us","es-es","fr-fr","pt-br"
 
 foreach ($App in $AppList) {
       foreach ($Language in $LanguageList) {
