@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Portal</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 40px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #2563eb;
+            color: white;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #status {
+            margin-top: 30px;
+            padding: 15px;
+            background: #374151;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Deployment Portal</h1>
+
+    <div class="button-grid">
+        <button onclick="sendCommand('Install Adobe Reader')">
+            Install Adobe Reader
+        </button>
+
+        <button onclick="sendCommand('Install Zoom')">
+            Install Zoom
+        </button>
+
+        <button onclick="sendCommand('Install 7-Zip')">
+            Install 7-Zip
+        </button>
+
+        <button onclick="sendCommand('Run GPUpdate')">
+            Run GPUpdate
+        </button>
+
+        <button onclick="sendCommand('Restart Computer')">
+            Restart Computer
+        </button>
+
+        <button onclick="sendCommand('Clear Temp Files')">
+            Clear Temp Files
+        </button>
+    </div>
+
+    <div id="status">
+        Ready
+    </div>
+</div>
+
+<script>
+function sendCommand(command) {
+
+    console.log("Command sent:", command);
+
+    document.getElementById("status").innerHTML =
+        "Command Sent: <strong>" + command + "</strong>";
+
+    // Future API Example:
+    // fetch('https://your-api.com/run', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         command: command
+    //     })
+    // });
+}
+</script>
+
+</body>
+</html>
