@@ -40,7 +40,7 @@ New-Button "Remove Office Bloatware" 110 { Remove-Office }
 New-Button "Remove Dell Bloatware V2" 150 { Remove-Dellv2 }
 New-Button "Remove Dell Bloatware V1" 190 { Remove-Dellv1 }
 
-New-Button "Install Adobe Reader (Testing)" 230 { Install-Adobe }
+New-Button "Install Adobe Reader (Not Working)" 230 { Install-Adobe }
 New-Button "Install Remote Desktop (Testing)" 270 { Install-RDC }
 New-Button "Install Zoom (Testing)" 310 { Install-Zoom }
 New-Button "Install Chrome (Testing)" 350 { Install-Chrome }
