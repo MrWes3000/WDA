@@ -32,7 +32,7 @@ button {
 
 <h1>Deployment Portal</h1>
 
-<button onclick="showText('iex (irm ''https://raw.githubusercontent.com/MrWes3000/WDA/main/SuperRemover.ps1'')')">
+<button onclick="showSuperRemover()">
     Super Remover
 </button>
 
@@ -62,6 +62,14 @@ Click a button to display information.
 </div>
 
 <script>
+
+let currentText = "";
+    
+function showSuperRemover() {
+    showText('iex (irm "https://raw.githubusercontent.com/MrWes3000/WDA/main/SuperRemover.ps1")');
+}
+
+   
 let currentText = "";
 
 function showText(text) {
