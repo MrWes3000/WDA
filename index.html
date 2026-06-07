@@ -79,7 +79,7 @@
 
     <button onclick="setCmd('Remove-Office')">Remove Office (Runbook)</button>
 
-    <button onclick="SetCmd('powershell -ExecutionPolicy Bypass -Command "iex (irm \'https://raw.githubusercontent.com/MrWes3000/WDA/refs/heads/main/SuperRemoverGUI.ps1\')"')> Master GUI 2 </button> 
+    <button onclick="SetCmd(cmd)> Master GUI 3 </button> 
 
 </div>
 
@@ -93,6 +93,9 @@ Click a button to generate a PowerShell command
 let currentCmd = "";
 
 function setCmd(cmd) {
+
+    Const cmd = 'powershell -ExecutionPolicy Bypass -Command "iex (irm \'https://raw.githubusercontent.com/MrWes3000/WDA/refs/heads/main/SuperRemoverGUI.ps1\')"';
+    
     currentCmd = cmd;
 
     document.getElementById("output").innerText =
