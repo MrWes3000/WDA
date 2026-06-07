@@ -1,119 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deployment Runbook</title>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #1f2937;
-        color: white;
-        margin: 0;
-        padding: 30px;
-        text-align: center;
-    }
-
-    h1 {
-        margin-bottom: 20px;
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 12px;
-        max-width: 900px;
-        margin: auto;
-    }
-
-    button {
-        padding: 14px;
-        font-size: 15px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        background: #2563eb;
-        color: white;
-    }
-
-    button:hover {
-        background: #1d4ed8;
-    }
-
-    #output {
-        margin-top: 25px;
-        background: #111827;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: left;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-        white-space: pre-wrap;
-        font-family: Consolas, monospace;
-    }
-
-    #copyBtn {
-        margin-top: 10px;
-        background: #10b981;
-    }
-</style>
-</head>
-
-<body>
-
-<h1>Deployment Runbook</h1>
-
-<div class="grid">
-
-    <button onclick="setCmd('winget install Zoom.Zoom')">Install Zoom</button>
-
-    <button onclick="setCmd('winget install 7zip.7zip')">Install 7-Zip</button>
-
-    <button onclick="setCmd('winget install Adobe.Acrobat.Reader.64-bit')">Install Adobe Reader</button>
-
-    <button onclick="setCmd('gpupdate /force')">Run GPUpdate</button>
-
-    <button onclick="setCmd('shutdown /r /t 0')">Restart PC</button>
-
-    <button onclick="setCmd('Remove-Office')">Remove Office (Runbook)</button>
-
-    <button onclick="SetCmd(cmd)"> Master GUI 3 </button> 
-
-</div>
-
-<div id="output">
-Click a button to generate a PowerShell command
-</div>
-
-<button id="copyBtn" onclick="copyCmd()">Copy Command</button>
-
-<script>
-let currentCmd = "";
-
-function setCmd(cmd) {
-
-    Const cmd = 'powershell -ExecutionPolicy Bypass -Command "iex (irm \'https://raw.githubusercontent.com/MrWes3000/WDA/refs/heads/main/SuperRemoverGUI.ps1\')"';
-    
-    currentCmd = cmd;
-
-    document.getElementById("output").innerText =
-`PowerShell Command:
--------------------------
-${cmd}`;
+body {
+    font-family: Arial, sans-serif;
+    background: #1f2937;
+    color: white;
+    padding: 20px;
 }
 
-function copyCmd() {
-    if (!currentCmd) return;
+button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
 
-    navigator.clipboard.writeText(currentCmd);
+#display {
+    margin-top: 20px;
+    padding: 15px;
+    background: #111827;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    min-height: 200px;
+    font-family: Consolas, monospace;
+}
+</style>
+</head>
+<body>
 
-    document.getElementById("copyBtn").innerText = "Copied!";
+<h1>Deployment Portal</h1>
 
-    setTimeout(() => {
-        document.getElementById("copyBtn").innerText = "Copy Command";
-    }, 1500);
+<button onclick="showText('iex (irm ''https://raw.githubusercontent.com/MrWes3000/WDA/main/SuperRemover.ps1'')')">
+    Super Remover
+</button>
+
+<button onclick="showText('https://portal.office.com')">
+    Office 365 Portal
+</button>
+
+<button onclick="showText('winget install Zoom.Zoom')">
+    Install Zoom
+</button>
+
+<button onclick="showText(`Checklist:
+
+1. Verify user logged out
+2. Rename workstation
+3. Install printer
+4. Test Outlook`)">
+    New PC Checklist
+</button>
+
+<button onclick="copyText()">
+    Copy Displayed Text
+</button>
+
+<div id="display">
+Click a button to display information.
+</div>
+
+<script>
+let currentText = "";
+
+function showText(text) {
+    currentText = text;
+    document.getElementById("display").textContent = text;
+}
+
+function copyText() {
+    if (!currentText) return;
+
+    navigator.clipboard.writeText(currentText);
+
+    alert("Copied to clipboard");
 }
 </script>
 
