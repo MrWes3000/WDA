@@ -24,6 +24,12 @@
             max-width: 800px;
             margin: auto;
         }
+        
+        .display-container {
+            max-width: 800px;
+            margin: auto;
+        }
+        
 
         .button-grid {
             display: grid;
@@ -73,8 +79,8 @@
 
     <button onclick="showText('winget install Zoom.Zoom')"> Install Zoom </button>
 
-    <button onclick="showText(`Checklist:
-    
+    <button onclick="showText(`
+    Checklist:
     1. Verify user logged out
     2. Rename workstation
     3. Install printer
@@ -82,13 +88,15 @@
         New PC Checklist
     </button>
 
-    <button onclick="copyText()"> Copy Displayed Text </button>
+    
     </div>
 </div>
+<div id=display-container">
 <div id="display"> 
         Click a button to display information. 
 </div>
-
+<button onclick="copyText()"> Copy Displayed Text </button>
+</div>
 
 <script>
    
